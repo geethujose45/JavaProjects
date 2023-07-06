@@ -16,7 +16,7 @@ public class AccountMain {
 		ac.witdrawAmount=sc.nextInt();
 		ac.validatePINAndwithdrawCash();
 		ac.atmWithdrawal();
-	
+		sc.close();
 
 	}
 
