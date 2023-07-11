@@ -1,18 +1,18 @@
 package tankAssignment;
 
 public class TankClass {
-	int intialPoint;
-	int endPoint;
+	int intialWaterLevel;
+	int totalCapcity;
 
 	void tankCapacity() {
-		while (intialPoint <= 100) {
-			if (intialPoint == 100) {
-				System.out.println("Tank reached its maximum capacity");
+		while (intialWaterLevel <= totalCapcity) {
+			if (intialWaterLevel+10 > totalCapcity) {
+				System.out.println("Tank reached its maximum capacity,Tank overflow alert!");
 				break;
 			}
-			intialPoint += 10;
+			intialWaterLevel += 10;
 			System.out.println("liter of water added to tank in each iteration ");
-			System.out.println(intialPoint+ " Liters");
+			System.out.println(intialWaterLevel + " Liters");
 		}
 	}
 
