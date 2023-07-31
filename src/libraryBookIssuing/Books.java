@@ -5,13 +5,37 @@ public class Books {
 	boolean isBookIssued;
 	String bookName;
 	String nameOfAuthor;
+	BookGenres genresOfBook;
 
-	Books(String nameAuthor, String nameBook, boolean isIssued) {
+	public Books(String nameAuthor, String nameBook, boolean isIssued, BookGenres genres) {
 
-		bookName = nameBook;
 		nameOfAuthor = nameAuthor;
+		bookName = nameBook;
 		isBookIssued = isIssued;
+		genresOfBook = genres;
 
 	}
 
+	enum BookGenres {
+
+		FICTION("Fiction"), 
+		NARRATIVE("Narrative"), 
+		MYSTERY("Mystery"), 
+		NOVEL("Novel"), 
+		FANTASY("Fantasy");
+
+		String genresOfBook;
+
+		private BookGenres(String genres) {
+			genresOfBook = genres;
+		}
+
+		String getgenresOfBook() {
+			return genresOfBook;
+		}
+	}
+
+	public BookGenres genresOfBook() {
+		return genresOfBook;
+	}
 }
