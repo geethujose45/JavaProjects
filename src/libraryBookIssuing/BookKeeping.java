@@ -2,48 +2,46 @@ package libraryBookIssuing;
 
 import java.util.Scanner;
 
+import libraryBookIssuing.Books.BookGenres;
+
 public class BookKeeping {
 	Scanner sc = new Scanner(System.in);
-	String selectedUser;
-	String selectedGener;
-	String text="Welcome %s to %s library";
+	private String selectedUser;
+	private String selectedGener;
+	private String text = "Welcome %s to %s library";
 
-	void registeredUserCheck(Users[] bookUsers) {
-
+	public boolean registeredUserCheck(Users[] bookUsers) {
 		System.out.println("Enter the name of user(Ravi/Manu/Kevin) : ");
 		selectedUser = sc.nextLine();
-		boolean userFound = false;
-		for (int i = 0; i < bookUsers.length; i++) {
-			if (selectedUser.equalsIgnoreCase(bookUsers[i].nameOfUsers)) {
-				String formattedText=String.format(text,"registered user","Toronto");
+		for (Users users : bookUsers) {
+			if (selectedUser.equalsIgnoreCase(users.nameOfUsers)) {
+				String formattedText = String.format(text, "registered user", "Toronto");
 				System.out.println(formattedText);
-				userFound = true;
-				break;
+				return true;
 			}
 		}
-		if (!userFound) {
-			System.out.println("User not registered,please register in the library");
-			System.exit(0);
-		}
+		System.out.println("User not registered,please register in the library");
+		return false;
 	}
 
-	void chooseGener(Books[] booksInLibrary) {
-		System.out.println("Which gener of book you are look for?(FICTION/NARRATIVE/MYSTERY/NOVEL/FANTASY)");
+	public boolean chooseGener(Books[] booksInLibrary) {
+		System.out.println(
+				"Which gener of book you are look for? \n FICTION \n NARRATIVE \n MYSTERY \n NOVEL \n FANTASY");
 		selectedGener = sc.nextLine().toUpperCase();
 
 		boolean isValidGenre = false;
 		Books.BookGenres[] allGenres = Books.BookGenres.values();
-
-		for (int i = 0; i < allGenres.length; i++) {
-			if (selectedGener.equals(allGenres[i].name())) {
+		for (BookGenres bookGenres : allGenres) {
+			if (selectedGener.equals(bookGenres.name())) {
 				isValidGenre = true;
 				break;
 			}
+
 		}
+
 		if (isValidGenre) {
 			System.out.println("Books are available in " + selectedGener);
 			System.out.println("Available Books");
-
 			boolean foundBooksInGenre = false;
 
 			for (int i = 0; i < booksInLibrary.length; i++) {
@@ -52,12 +50,14 @@ public class BookKeeping {
 					foundBooksInGenre = true;
 				}
 			}
+
 			if (!foundBooksInGenre) {
 				System.out.println("Books not available");
 			}
+			return foundBooksInGenre;
 		} else {
 			System.out.println("Invalid Input");
-			System.exit(0);
+			return false;
 		}
 	}
 
@@ -68,16 +68,15 @@ public class BookKeeping {
 			System.out.println("Enter the name of the book that you want to be issued");
 			String bookName = sc.nextLine();
 			boolean bookFound = false;
-
-			for (int i = 0; i < booksInLibrary.length; i++) {
-				if (booksInLibrary[i].bookName.equals(bookName) && booksInLibrary[i].genresOfBook.name().equals(selectedGener)&&!booksInLibrary[i].isBookIssued) {
-					booksInLibrary[i].isBookIssued = true;
+			for (Books books : booksInLibrary) {
+				if (books.bookName.equals(bookName) && books.genresOfBook.name().equals(selectedGener)
+						&& !books.isBookIssued) {
+					books.isBookIssued = true;
 					cnt++;
 					bookFound = true;
 					break;
 				}
 			}
-
 			if (!bookFound) {
 				System.out.println("Book not found or already issued. Please enter a valid book name.");
 			}
@@ -93,9 +92,27 @@ public class BookKeeping {
 			if (needMoreBooks.equalsIgnoreCase("no")) {
 				System.out.println("Thankyou for visiting Us");
 				break;
+			} else {
+				chooseGener(booksInLibrary);
 			}
 		}
-
+		// System.out.println("Thankyou for visiting Us");
 		sc.close();
+	}
+
+	public String getSelectedUser() {
+		return selectedUser;
+	}
+
+	public void setSelectedUser(String selectedUser) {
+		this.selectedUser = selectedUser;
+	}
+
+	public String getSelectedGener() {
+		return selectedGener;
+	}
+
+	public void setSelectedGener(String selectedGener) {
+		this.selectedGener = selectedGener;
 	}
 }
