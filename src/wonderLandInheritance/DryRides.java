@@ -23,10 +23,10 @@ public class DryRides extends WonderLandRides {
 		dryRides[3] = new WonderLandRides("Shockwave", 55, 154, typeOfRide.DRYRIDE);
 		dryRides[4] = new WonderLandRides("Silver Streak", 45, 144, typeOfRide.DRYRIDE);
 		System.out.println("________________________________");
-		System.out.println("Wet rides in WonderLand:");
+		System.out.println("Dry rides in WonderLand:");
 		System.out.println("________________________________");
-		for (int i = 0; i < dryRides.length; i++) {
-			System.out.println(dryRides[i].nameOfRide);
+		for (WonderLandRides ride : dryRides) {
+	        System.out.println(ride.nameOfRide);
 
 		}
 	}

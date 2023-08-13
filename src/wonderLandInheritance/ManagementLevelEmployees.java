@@ -13,8 +13,8 @@ public class ManagementLevelEmployees extends Employees {
 
 	public void calculateEmployeeDiscount() {
 		discountPercentage = 50;
-		ticketPrice = 158 * (discountPercentage/100);
-		System.out.println(ticketPrice);
+		ticketPrice = 158 - (158 * (discountPercentage / 100));
+	    System.out.println("Discounted ticket price: $" + ticketPrice);
 	}
 
 }

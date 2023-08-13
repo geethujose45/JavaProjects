@@ -30,29 +30,31 @@ public class HandleEmployeesAndRides {
 		WonderLandRides[] allRides = wonderLandRides.getAllRides();
 		WonderLandRides rides;
 
-		System.out.println("Press 1 for Dry rides");
+		System.out.println("Press 1 Know About us");
 		System.out.println("Press 2 for Water rides");
-		System.out.println("Press 3 for all rides");
+		System.out.println("Press 3 for Dry rides");
 		System.out.println("Press 4 to check the ride that you are eligible for");
 
 		String rideType = sc.next();
 
 		switch (rideType) {
 		case "1":
-			rides = new DryRides(null, 0, 0, null);
-			rides.description();
-			rides.getDryrides();
+			rides = new WonderLandRides(rideType, 0, 0, null);
+			rides.description(true);
+			rides.getAllRides();
 			break;
+
 		case "2":
 			rides = new WaterRides(null, 0, 0, null);
 			rides.description();
 			rides.getWaterrides();
 			break;
 		case "3":
-			rides = new WonderLandRides(rideType, 0, 0, null);
-			wonderLandRides.description();
-			wonderLandRides.getAllRides();
+			rides = new DryRides(null, 0, 0, null);
+			rides.description();
+			rides.getDryrides();
 			break;
+
 		case "4":
 			System.out.print("Enter your height in cm: ");
 			int height = sc.nextInt();
@@ -62,12 +64,20 @@ public class HandleEmployeesAndRides {
 
 			System.out.println("Eligible rides:");
 
-			for (WonderLandRides ride : allRides) {
-				if (ride.isEligible(height, weight)) {
-					System.out.println(ride.nameOfRide);
-				}
-			}
-			break;
+			boolean eligibleRideFound = false; // To track if any eligible rides were found
+
+		    for (WonderLandRides ride : allRides) {
+		        if (ride.isEligible(height, weight)) {
+		            System.out.println(ride.nameOfRide);
+		            eligibleRideFound = true;
+		        }
+		    }
+
+		    if (!eligibleRideFound) {
+		        System.out.println("Sorry, there are no eligible rides for your height and weight.");
+		    }
+		    break;
+			
 
 		default:
 			break;

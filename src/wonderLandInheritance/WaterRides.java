@@ -23,8 +23,8 @@ public class WaterRides extends WonderLandRides {
 		System.out.println("________________________________");
 		System.out.println("Water rides in WonderLand");
 		System.out.println("________________________________");
-		for (int i = 0; i < waterRides.length; i++) {
-			System.out.println(waterRides[i].nameOfRide);
+		for (WonderLandRides ride : waterRides) {
+			System.out.println(ride.nameOfRide);
 
 		}
 	}
