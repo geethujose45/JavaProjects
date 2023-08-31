@@ -24,9 +24,9 @@ public class HashMapList {
 		HashMap<String, List<User>> userMap1 = new HashMap<>();
 		userMap1.put("allUsers", listOfUsers);
 
-		List<User> retrievedUsers = userMap1.get("allUsers");
-		if (retrievedUsers != null) {
-			for (User user : retrievedUsers) {
+		List<User> getUsers = userMap1.get("allUsers");
+		if (getUsers != null) {
+			for (User user : getUsers) {
 				System.out.println("Username: " + user.getUserName());
 			}
 		}
